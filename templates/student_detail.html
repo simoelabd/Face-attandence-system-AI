@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f4f8fb; /* Light background for contrast */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff; /* White background for the form */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #28a745; /* Green header */
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .student-details {
+            border-top: 2px solid #28a745; /* Green border */
+            padding-top: 20px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .detail {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .actions {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .actions a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 12px 24px;
+            background-color: #28a745; /* Green button */
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .actions a:hover {
+            background-color: #218838; /* Darker green on hover */
+            color: #fff;
+        }
+
+        /* Additional Styling for Links */
+        .actions a.delete {
+            background-color: #dc3545; /* Red for delete */
+            border: 1px solid #dc3545;
+        }
+
+        .actions a.delete:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Details</h1>
+        <div class="student-details">
+            <div class="detail"><strong>Name:</strong> {{ student.name }}</div>
+            <div class="detail"><strong>Email:</strong> {{ student.email }}</div>
+            <div class="detail"><strong>Phone Number:</strong> {{ student.phone_number }}</div>
+            <div class="detail"><strong>Department:</strong> {{ student.student_class }}</div>
+            <div class="detail"><strong>Authorized:</strong> {% if student.authorized %} Yes {% else %} No {% endif %}</div>
+        </div>
+        <div class="actions">
+            <a href="{% url 'student-list' %}">Back to List</a>
+            <a href="{% url 'student-authorize' pk=student.pk %}">Authorize</a>
+            <a href="{% url 'student-delete' pk=student.pk %}" class="delete">Delete</a>
+        </div>
+    </div>
+</body>
+</html>

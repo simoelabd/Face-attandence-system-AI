@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-Attendance System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f8;
+      color: #1b5e20;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #e0f2e9;
+      padding: 20px;
+      height: 100vh;
+      position: fixed;
+      overflow-y: auto;
+      border-right: 1px solid #c8e6c9;
+    }
+
+    .sidebar h2 {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      color: #388e3c;
+      text-align: center;
+    }
+
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      color: #1b5e20;
+      text-decoration: none;
+      padding: 10px 15px;
+      margin: 5px 0;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #c8e6c9;
+    }
+
+    .sidebar a i {
+      margin-right: 10px;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 40px;
+      flex-grow: 1;
+      background: linear-gradient(to bottom right, #e8f5e9, #ffffff);
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .hero-section h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #2e7d32;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: #f1f8e9;
+      border-radius: 12px;
+      padding: 20px;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 30px rgba(0, 128, 0, 0.2);
+    }
+
+    .card i {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: #66bb6a;
+    }
+
+    .card p {
+      font-size: 1.2em;
+      margin: 0;
+      color: #1b5e20;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #4caf50;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>AI Dashboard</h2>
+    <a href="{% url 'capture_student' %}"><i class="fas fa-user-plus"></i> Employee Registration</a>
+    <a href="{% url 'student-list' %}"><i class="fas fa-user-friends"></i> Manage Employees</a>
+    <a href="{% url 'capture_and_recognize' %}"><i class="fas fa-camera"></i> Mark Attendance</a>
+    <a href="{% url 'student_attendance_list' %}"><i class="fas fa-list"></i> Attendance Details</a>
+    <a href="{% url 'camera_config_list' %}"><i class="fas fa-video"></i> Manage Cameras</a>
+  </div>
+
+  <div class="main-content">
+    <div class="hero-section">
+      <h1>Face-Based Employee Attendance System</h1>
+      <div class="buttons">
+        <div class="card">
+          <a href="{% url 'student-list' %}">
+            <i class="fas fa-user-graduate"></i>
+            <p>Total Employees: {{ total_students }}</p>
+          </a>
+        </div>
+        <div class="card">
+          <a href="{% url 'student_attendance_list' %}">
+            <i class="fas fa-calendar-check"></i>
+            <p>Total Attendance Records: {{ total_attendance }}</p>
+          </a>
+        </div>
+        <div class="card">
+          <a href="{% url 'student_attendance_list' %}">
+            <i class="fas fa-sign-in-alt"></i>
+            <p>Total Check-Ins: {{ total_check_ins }}</p>
+          </a>
+        </div>
+        <div class="card">
+          <a href="{% url 'student_attendance_list' %}">
+            <i class="fas fa-sign-out-alt"></i>
+            <p>Total Check-Outs: {{ total_check_outs }}</p>
+          </a>
+        </div>
+        <div class="card">
+          <a href="{% url 'camera_config_list' %}">
+            <i class="fas fa-video"></i>
+            <p>Total Cameras: {{ total_cameras }}</p>
+          </a>
+        </div>
+      </div>
+    </div> 
+  </div>
+</body>
+</html>
